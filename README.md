@@ -36,4 +36,27 @@ OpenPyXL (Excel İşlemleri)
 <img width="1676" height="984" alt="vertical excel" src="https://github.com/user-attachments/assets/d03b159c-808d-49fa-a0d7-8de84248e632" />
 
 
+
+
+## 🐧 Linux Kurulumu
+
+Bu uygulama Linux (Ubuntu, Debian, Kali vb.) üzerinde sorunsuz çalışır.
+
+1. Terminali açın ve gerekli paketleri yükleyin:
+   ```bash
+   sudo apt install python3-tk
+   pip3 install -r requirements.txt
+Uygulamayı başlatmak için:
+
+Bash
+
+python3 main_linux.py
+Veya Linux binary dosyası oluşturmak için:
+
+Bash
+
+pyinstaller --noconsole --onefile --collect-all customtkinter main_linux.py
+
+
+
 Geliştirici: yusufdalmis
