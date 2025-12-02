@@ -1,0 +1,39 @@
+name: Build TPN Calculator
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build_linux:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install System Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-tk
+        
+    - name: Install Python Libraries
+      run: |
+        pip install customtkinter openpyxl packaging pyinstaller
+        
+    - name: Build with PyInstaller
+      run: |
+        # Linux kodunun adının main_linux.py olduğunu varsayıyorum
+        # Eğer farklıysa aşağıdaki ismi değiştirin
+        pyinstaller --noconsole --onefile --collect-all customtkinter --name="TPN_Hesaplayici_Linux" main_linux.py
+        
+    - name: Upload Linux Binary
+      uses: actions/upload-artifact@v4
+      with:
+        name: TPN_Linux_App
+        path: dist/TPN_Hesaplayici_Linux
